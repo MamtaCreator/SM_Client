@@ -2,6 +2,79 @@
   flex: 1;
 }
 .content {
-  padding: 20px;
+  padding: 2px;
   text-align: center;
 }
+
+.dashboard-container {
+  padding: 20px;
+}
+
+.summary-card {
+  padding: 15px;
+  text-align: center;
+  border-radius: 12px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.attendance-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  text-align: center;
+}
+
+
+
+.charts-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.chart-card {
+  width: 280px;   /* 👈 smaller chart container */
+  height: 100%;  /* 👈 fix height */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.chart-card canvas {
+  width: 100% !important;  /* 👈 make chart fit box */
+  /*height: 180px !important;  👈 control chart size */
+}
+
+
+.dashboard-container {
+  padding: 20px;
+}
+
+.summary-cards {
+
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  padding: 15px;
+  background: #1976d2;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.charts-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
