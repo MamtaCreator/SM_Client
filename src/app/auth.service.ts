@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { LoginResponse, RegisterResponse, User } from './models/user.model';
+import { LoginRequest } from './models/UserLogin.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,24 +35,28 @@ export class AuthService {
   }
 
   /**
-   * User Login
-   * @param email - User email
-   * @param PasswordHash - User password
-   * @returns Observable<LoginResponse>
-   */
-  login(email: string, PasswordHash: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, PasswordHash }, {
-      withCredentials: true,  // ✅ Handles credentials for CORS requests
+ * User Login (Role-based)
+ * @param payload - role + identifier + password
+ * @returns Observable<LoginResponse>
+ */
+login(payload: LoginRequest): Observable<LoginResponse> {
+  return this.http.post<LoginResponse>(
+    `${this.apiUrl}/login`,
+    payload,
+    {
+      withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    }).pipe(
-      catchError(error => {
-        console.error('Login failed:', error);
-        return throwError(() => new Error('Login failed'));
-      })
-    );
-  }
+    }
+  ).pipe(
+    catchError(error => {
+      console.error('Login failed:', error);
+      return throwError(() => new Error(error.error?.message || 'Login failed'));
+    })
+  );
+}
+
   // getRoles(): Observable<{ role: string }[]> {
   //   return this.http.get<{ role: string }[]>(`${this.apiUrl}/roles`);
   // }

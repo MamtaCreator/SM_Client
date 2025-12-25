@@ -1,15 +1,63 @@
 <mat-card class="login-card">
   <h2>Login</h2>
   <form>
+     <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Login As</mat-label>
+          <mat-select [(ngModel)]="selectedrole" name="role" required>
+            <mat-option *ngFor="let r of roles" [value]="r.role">{{ r.role }}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+   <!-- SchoolID (Admin / Owner) -->
+    <mat-form-field
+      *ngIf="selectedrole === 'ADMIN' || selectedrole === 'OWNER'"
+      appearance="outline"
+      class="full-width"
+    >
+      <mat-label>School ID</mat-label>
+      <input matInput type="number" [(ngModel)]="schoolID" name="schoolID" required>
+    </mat-form-field>
+
+    <!-- Email (Teacher / Parent / Staff) -->
+    <mat-form-field
+      *ngIf="selectedrole === 'TEACHER' || selectedrole === 'PARENT' || selectedrole === 'STAFF'"
+      appearance="outline"
+      class="full-width"
+    >
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" name="email" required>
+    </mat-form-field>
+
+    <!-- StudentID -->
+    <mat-form-field
+      *ngIf="selectedrole === 'STUDENT'"
+      appearance="outline"
+      class="full-width"
+    >
+      <mat-label>Student ID</mat-label>
+      <input matInput [(ngModel)]="studentID" name="studentID" required>
+    </mat-form-field>
+
+    <!-- Password -->
     <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" required>
+    </mat-form-field>
+
+
+
+
+
+
+    <!-- <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
       <input matInput type="email" [(ngModel)]="email" name="email" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Password</mat-label>
-      <input matInput type="password" [(ngModel)]="PasswordHash" name="password" required>
-    </mat-form-field>
+      <input matInput type="password" [(ngModel)]="password" name="password" required>
+    </mat-form-field> -->
 
     <button mat-raised-button color="primary" class="full-width" (click)="login()">Login</button>
   </form>

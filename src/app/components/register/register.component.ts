@@ -23,6 +23,10 @@ import { User } from '../../models/user.model';
         <mat-form-field>
           <input matInput placeholder="Email" [(ngModel)]="email" name="email" required />
         </mat-form-field>
+            <mat-form-field>
+              <mat-label>School</mat-label>
+              <input matInput [(ngModel)]="school" name="school" required />
+            </mat-form-field>
         <mat-form-field>
           <input matInput type="password" placeholder="Password" [(ngModel)]="PasswordHash" name="password" required />
         </mat-form-field>
@@ -52,18 +56,11 @@ import { User } from '../../models/user.model';
   ]
 })
 export class RegisterComponent implements OnInit {
+
     ngOnInit() {
       this.fetchRoles();
     }
-    // fetchRoles() {
-    //   this.authService.getRoles().subscribe({
-    //     next: (data) => {
-    //       console.log('Roles from API:', data);  // ✅ Check structure
-    //       this.roles = data;
-    //     },
-    //     error: (error) => console.error('Error fetching roles:', error)
-    //   });
-    // }
+
 fetchRoles() {
   this.authService.getRoles().subscribe((data) => {
   this.roles = data.map(r => ({ role: r.role.role }));
@@ -72,6 +69,7 @@ fetchRoles() {
 }
   name = '';
   email = '';
+  school = '';
   PasswordHash = '';
   roles:  {role:string }[] = [];
   selectedrole:string = '';
@@ -82,8 +80,9 @@ fetchRoles() {
     const user: User = {
       name: this.name,
       email: this.email,
+      SchoolName: this.school,
       PasswordHash: this.PasswordHash,
-      role : this.selectedrole
+      role: this.selectedrole,
     };
 
 
