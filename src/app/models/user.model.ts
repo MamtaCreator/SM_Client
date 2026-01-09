@@ -1,7 +1,7 @@
 export interface User {
   name?: string;
   email: string;
-  PasswordHash: string;
+  Password: string;
   role?: string;
   SchoolName?: string;
   schoolID?: number;
@@ -17,5 +17,6 @@ export interface LoginResponse {
 export interface RegisterResponse {
   success: boolean;
   message: string;
+
 }
 

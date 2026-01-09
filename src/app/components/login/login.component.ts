@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, MatInputModule, MatButtonModule, MatCardModule,MatSelectModule , MatOption],
+  imports: [CommonModule, FormsModule, MatInputModule, MatButtonModule, MatCardModule,MatSelectModule , MatOption,MatSelectModule],
 })
 // export class LoginComponent {
 //   email = '';
@@ -61,7 +61,7 @@ export class LoginComponent {
 
 fetchRoles() {
   this.authService.getRoles().subscribe((data) => {
-  this.roles = data.map(r => ({ role: r.role.role }));
+  this.roles = data.map(r => ({ role: r.role.role.toUpperCase() }));
 });
 }
   login() {

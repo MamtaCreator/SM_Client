@@ -25,10 +25,10 @@ import { User } from '../../models/user.model';
         </mat-form-field>
             <mat-form-field>
               <mat-label>School</mat-label>
-              <input matInput [(ngModel)]="school" name="school" required />
+              <input matInput [(ngModel)]="SchoolName" name="school" required />
             </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" placeholder="Password" [(ngModel)]="PasswordHash" name="password" required />
+          <input matInput type="password" placeholder="Password" [(ngModel)]="Password" name="password" required />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Select Role</mat-label>
@@ -69,8 +69,8 @@ fetchRoles() {
 }
   name = '';
   email = '';
-  school = '';
-  PasswordHash = '';
+  SchoolName = '';
+  Password = '';
   roles:  {role:string }[] = [];
   selectedrole:string = '';
   private authService = inject(AuthService);
@@ -80,13 +80,14 @@ fetchRoles() {
     const user: User = {
       name: this.name,
       email: this.email,
-      SchoolName: this.school,
-      PasswordHash: this.PasswordHash,
+      SchoolName: this.SchoolName,
+      Password: this.Password,
       role: this.selectedrole,
     };
 
 
     this.authService.register(user).subscribe({
+
       next: (response) => {
         if (response.success) {
           console.log('Registration successful:', response.message);
